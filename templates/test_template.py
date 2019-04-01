@@ -1,3 +1,4 @@
+{% for class_name in classes %}
 from {{ module_name }} import {{ class_name }}
 class Test{{ class_name }}:
     def test_unitofwork_scenario_expectedresult(self):
@@ -5,3 +6,4 @@ class Test{{ class_name }}:
         # Act
         # Assert 
         assert 0
+{% endfor %}

@@ -14,13 +14,13 @@ clsmembers = [classname for classname, obj in inspect.getmembers(module, inspect
 
 # Create jinja template
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
-template = env.get_template('test_template.py').render(module_name = module_name, class_name = clsmembers[0])
+template = env.get_template('test_template.py').render(module_name = module_name, classes= clsmembers)
 
 # Create tests directory and autogenerate the test class
 test_dir = os.path.join(path_to_module, 'tests')
 if not os.path.exists(test_dir):
     os.makedirs(test_dir)
 
-test_filename = os.path.join(test_dir, 'test_{}_.py'.format(module_name))
+test_filename = os.path.join(test_dir, 'test_{}.py'.format(module_name))
 with open(test_filename, 'w') as test_file:
     print(template, file=test_file)
